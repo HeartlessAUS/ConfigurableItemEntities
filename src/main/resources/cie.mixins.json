@@ -1,6 +1,5 @@
 {
   "package": "mod.acgaming.cie.mixin",
-  "refmap": "cie.refmap.json",
   "minVersion": "0.8",
   "compatibilityLevel": "JAVA_17",
   "mixins": ["FallingBlockEntityMixin", "ItemEntityMixin", "ServerGamePacketListenerImplMixin"],

@@ -1,22 +1,19 @@
 package mod.acgaming.cie;
 
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
+import net.fabricmc.loader.api.FabricLoader;
+import net.minecraftforge.api.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import mod.acgaming.cie.config.CIEConfigHandler;
-
-@Mod(CIE.MODID)
-public class CIE
-{
-    public static final String MODID = "cie";
-
-    public CIE()
-    {
-        final IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CIEConfigHandler.SPEC);
-        eventBus.register(CIEConfigHandler.class);
-    }
+public class CIE implements ModInitializer {
+	// This logger is used to write text to the console and the log file.
+	// It is considered best practice to use your mod id as the logger's name.
+	// That way, it's clear which mod wrote info, warnings, and errors.
+	@Override
+	public void onInitialize() {
+		ModLoadingContext.registerConfig(Loader.MODID, ModConfig.Type.COMMON, CIEConfigHandler.SPEC);
+		Loader.LOGGER.info("CIE - Fabric Loaded!");
+	}
 }

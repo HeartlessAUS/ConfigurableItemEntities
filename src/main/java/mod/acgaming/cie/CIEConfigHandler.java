@@ -1,10 +1,9 @@
-package mod.acgaming.cie.config;
-
+package mod.acgaming.cie;
 import java.util.ArrayList;
 import java.util.List;
-
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
+import net.minecraft.core.Registry;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class CIEConfigHandler
@@ -16,7 +15,7 @@ public class CIEConfigHandler
 
     public static boolean isCollectionTool(Item item)
     {
-        String regName = item.getRegistryName().toString();
+        String regName = Registry.ITEM.toString();
         for (String s : CIEConfigHandler.GAMEPLAY_SETTINGS.collectionTool.get())
         {
             if (regName.equals(s))

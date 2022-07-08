@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 
-import mod.acgaming.cie.config.CIEConfigHandler;
+import mod.acgaming.cie.CIEConfigHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -18,15 +18,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(value = ItemEntity.class, priority = 1002)
+@Mixin(ItemEntity.class)
 public abstract class ItemEntityMixin extends Entity
 {
-    @Inject(method = "areMergable", at = @At("HEAD"), cancellable = true)
-    private static void CIE_areMergable(CallbackInfoReturnable<Boolean> cir)
-    {
-        if (!CIEConfigHandler.GAMEPLAY_SETTINGS.combining.get()) cir.setReturnValue(false);
-    }
-
     public boolean playerInteraction;
 
     @Shadow
@@ -100,7 +94,7 @@ public abstract class ItemEntityMixin extends Entity
         return true;
     }
 
-    @Inject(method = "playerTouch", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "playerTouch(Lnet/minecraft/world/entity/player/Player;)V", at = @At("HEAD"), cancellable = true)
     public void CIE_playerTouch(Player player, CallbackInfo ci)
     {
         Item heldItem = player.getItemInHand(CIEConfigHandler.GAMEPLAY_SETTINGS.collectionToolHand.get()).getItem();

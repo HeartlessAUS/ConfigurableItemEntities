@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = FallingBlockEntity.class, priority = 1002)
+@Mixin(FallingBlockEntity.class)
 public abstract class FallingBlockEntityMixin extends Entity
 {
     @Shadow

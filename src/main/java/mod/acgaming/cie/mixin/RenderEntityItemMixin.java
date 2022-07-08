@@ -17,10 +17,10 @@ import net.minecraft.world.item.ItemStack;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import mod.acgaming.cie.config.CIEConfigHandler;
+import mod.acgaming.cie.CIEConfigHandler;
 import org.spongepowered.asm.mixin.*;
 
-@Mixin(value = ItemEntityRenderer.class, priority = 1002)
+@Mixin(ItemEntityRenderer.class)
 public abstract class RenderEntityItemMixin extends EntityRenderer<ItemEntity>
 {
     @Mutable
@@ -38,11 +38,7 @@ public abstract class RenderEntityItemMixin extends EntityRenderer<ItemEntity>
         itemRenderer = null;
     }
 
-    @Shadow
-    public boolean shouldSpreadItems()
-    {
-        return true;
-    }
+
 
     /**
      * @author ACGaming
@@ -89,13 +85,13 @@ public abstract class RenderEntityItemMixin extends EntityRenderer<ItemEntity>
                     float f11 = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F;
                     float f13 = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F;
                     float f10 = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F;
-                    poseStack.translate(shouldSpreadItems() ? f11 : 0, shouldSpreadItems() ? f13 : 0, shouldSpreadItems() ? f10 : 0);
+                
                 }
                 else
                 {
                     float f12 = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F * 0.5F;
                     float f14 = (this.random.nextFloat() * 2.0F - 1.0F) * 0.15F * 0.5F;
-                    poseStack.translate(shouldSpreadItems() ? f12 : 0, shouldSpreadItems() ? f14 : 0, 0.0D);
+                
                 }
             }
 
